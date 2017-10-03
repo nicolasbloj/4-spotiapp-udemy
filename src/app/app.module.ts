@@ -1,3 +1,5 @@
+import { MySpotifyService } from './services/my-spotify.service';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { APP_ROUTING } from './app.routes';
@@ -15,9 +17,12 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
-    APP_ROUTING
+    APP_ROUTING,
+    HttpModule
+
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [MySpotifyService]
+
 })
 export class AppModule { }
