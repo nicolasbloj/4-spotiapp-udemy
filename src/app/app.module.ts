@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { MySpotifyService } from './services/my-spotify.service';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +17,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     NavbarComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     APP_ROUTING,
     HttpModule
