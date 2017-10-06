@@ -1,4 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 top-25">
+            <img src="{{(_mySpotifyService.artist.images  !== undefined) ? 
+                        _mySpotifyService.artist.images[0]?.url : 'assets/img/music.png'}}" alt="spotifynico" class="img-fluid img-thumbnail udemy-img-md">
+        </div>
+        <div class="col-md-9 text-left">
+            <div class="jumbotron vertical-center">
 
-    <pre>
-        {{_mySpotifyService.tracks | json}}
-      </pre> 
+                <h1>{{_mySpotifyService.artist.name}}</h1>
+                <button class="btn btn-outline-primary  ">
+                    Regresar
+                </button>
+                <button class="btn btn-outline-success  ">
+                    Abrir en Spotify
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-inverse">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th></th>
+                <th>Cancion</th>
+                <th>SPOTIFY</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let track of _mySpotifyService.tracks; let i = index'>
+                <th scope="row">{{i+1}}</th>
+                <td>
+                    <img src="{{(track.album.images  !== undefined) ? 
+                            track.album.images[0]?.url : 'assets/img/music.png'}}" alt="spotifynico" class="img-fluid img-thumbnail udemy-img-sm">
+                </td>
+                <td>
+                    {{track.name}}
+                </td>
+                <td>
+                    <iframe width="260" height="50" [src]="preview | domseguro: 'https://p.scdn.co/mp3-preview/' " frameborder="0"></iframe>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

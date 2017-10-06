@@ -76,3 +76,22 @@ hr{
 .top-30{
   margin-top:30px;
 }
+
+.udemy-img-sm{
+  width: 75px;
+  height: 75px;
+  }
+
+.udemy-img-md{
+width: 155px;
+height: 155px;
+}
+
+.jumbotron
+{
+  background: black;
+}
+
+.top-25{
+  margin-top:25px;
+}

@@ -1,23 +1,45 @@
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
-import { Http, Response, Headers } from '@angular/http';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MySpotifyService {
+
   public artists: any[] = [];
 
   public artist: any = {};
 
-  public tracks: any[] = [];  
+  public tracks: any[] = [];
 
-  token = 'BQCwiqMpzMQ1dDH82oL-qf9el7fJn4mXKg4ayjcWHlRg2Ma3QH_36nSuxf67lLgVJMJfe1_ZqwSxzcvRJTJ3dw';
+  token = 'BQAdD-mm_OOrzFxVz_lNcYCml8cSMeoRzAXvutr9o5TleqkekV746uVTEqbvslWrUgDrGJQqkSlMRzdd_NedJw';
+
+  URL_TOKEN = 'https://accounts.spotify.com/api/token';
 
   URL_SEARCH = 'https://api.spotify.com/v1/search';
 
   URL_SEARCH_ARTISTS = 'https://api.spotify.com/v1/artists/';
 
   constructor(private _http: Http) { }
+
+  /*getToken(): Observable<Response> {
+
+    const headers: Headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+
+    const options = new RequestOptions({ headers: headers });
+
+    const body = JSON.stringify(
+      {
+        'client_id': 'a412632d7c5e4fb98515babbf4302049',
+        'client_secret': '8bf0bd2836954eacb35cd4b5fcd85876',
+        'grant_type': 'client_credentials'
+      });
+
+    return this._http.post(this.URL_TOKEN, body, options);
+
+  }*/
+
+
 
   // con return para setear artists en una variable en search.component.ts
   getArtists(searchTerm: string): Observable<any[]> {
@@ -72,6 +94,8 @@ export class MySpotifyService {
 
 
   GetanArtistTopTracks(id: string, market?: string) {
+    console.log('Tracks');
+
     if (!market) {
       market = 'US';
     }
