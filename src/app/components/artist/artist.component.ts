@@ -15,6 +15,7 @@ export class ArtistComponent implements OnInit {
   ngOnInit() {
     this._activatedRoute.params.map(params => params['id']).subscribe(id => {
       this._mySpotifyService.getArtistsById(id).subscribe();
+      this._mySpotifyService.GetanArtistTopTracks(id).subscribe();
     });
 
 

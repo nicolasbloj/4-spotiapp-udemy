@@ -9,6 +9,8 @@ export class MySpotifyService {
 
   public artist: any = {};
 
+  public tracks: any[] = [];  
+
   token = 'BQCwiqMpzMQ1dDH82oL-qf9el7fJn4mXKg4ayjcWHlRg2Ma3QH_36nSuxf67lLgVJMJfe1_ZqwSxzcvRJTJ3dw';
 
   URL_SEARCH = 'https://api.spotify.com/v1/search';
@@ -68,4 +70,24 @@ export class MySpotifyService {
 
   }
 
+
+  GetanArtistTopTracks(id: string, market?: string) {
+    if (!market) {
+      market = 'US';
+    }
+
+    const headers = new Headers();
+    headers.append('authorization', `Bearer ${this.token}`);
+
+    const QUERY = `${id}/top-tracks?country=${market}`;
+    const URL = this.URL_SEARCH_ARTISTS + QUERY;
+
+    console.log(URL);
+
+    return this._http.get(URL, { headers }).map(res => {
+      console.log(res.json());
+      this.tracks = res.json().tracks;
+    });
+
+  }
 }
