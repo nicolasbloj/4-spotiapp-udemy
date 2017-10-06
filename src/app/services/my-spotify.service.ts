@@ -16,8 +16,7 @@ export class MySpotifyService {
   getArtists(searchTerm: string): Observable<any[]> {
 
     const headers = new Headers();
-    headers.append('authorization', 'Bearer BQCeqfFQIiDGLmzd1dkmaAz_JA2MZtexsw2c2o7TGFeig4favWfyHO6v0YgnHhH6fJJmrxCXIoVL0XEJrk5BSQ');
-
+    headers.append('authorization', 'Bearer BQCfdHPBfIF0heELEAIbEiwVyYBn-ZVpA6jTZVuJlQXNHTN0m-mFNirl5VHZR2hJ8rZ3glmfoMIebNUHbyEFwA');
     const QUERY = `?q=${searchTerm}&type=artist`;
     const URL = this.URL_SEARCH + QUERY;
 
@@ -35,12 +34,13 @@ export class MySpotifyService {
   getArtists2(searchTerm: string) {
 
     const headers = new Headers();
-    headers.append('authorization', 'Bearer BQCeqfFQIiDGLmzd1dkmaAz_JA2MZtexsw2c2o7TGFeig4favWfyHO6v0YgnHhH6fJJmrxCXIoVL0XEJrk5BSQ');
+    headers.append('authorization', 'Bearer BQCfdHPBfIF0heELEAIbEiwVyYBn-ZVpA6jTZVuJlQXNHTN0m-mFNirl5VHZR2hJ8rZ3glmfoMIebNUHbyEFwA');
 
     const QUERY = `?q=${searchTerm}&type=artist`;
     const URL = this.URL_SEARCH + QUERY;
 
     return this._http.get(URL, { headers }).map(res => {
+      console.log(res.json());
       this.artists = res.json().artists.items;
     });
 

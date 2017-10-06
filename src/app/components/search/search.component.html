@@ -2,14 +2,21 @@
   <div class="row">
     <div class="col-md-4">
       <input [(ngModel)]='termino' (keyup)="search()" class="form-control" type="text" name='termino' value='' placeholder="Buscar por artista">
+      <hr>
     </div>
-    
-    <hr>
+
+   
 
     <div class="col-md-8">
-      <ul *ngFor="let artist of _mySpotifyService.artists ">
-        <li> {{artist.name}} </li>
-      </ul>
+      <div class="row">
+        <div *ngFor="let artist of _mySpotifyService.artists " class="col-md-3 text-center">
+          <!--img src="{{artist.images[0]?.url | sinfoto}}" alt="spotifynico" class="img-fluid img-thumbnail"-->
+          <img src="{{artist.images | sinfoto}}" alt="spotifynico" class="img-fluid img-thumbnail">
+          <p>{{artist.name}}</p>
+          <hr>
+        </div>
+    
+      </div>
     </div>
 
 
