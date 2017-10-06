@@ -5,17 +5,17 @@
       <hr>
     </div>
 
-   
+
 
     <div class="col-md-8">
       <div class="row">
-        <div *ngFor="let artist of _mySpotifyService.artists " class="col-md-3 text-center">
+        <div [routerLink]="['/artist',artist.id]" *ngFor="let artist of _mySpotifyService.artists " class="col-md-3 text-center">
           <!--img src="{{artist.images[0]?.url | sinfoto}}" alt="spotifynico" class="img-fluid img-thumbnail"-->
           <img src="{{artist.images | sinfoto}}" alt="spotifynico" class="img-fluid img-thumbnail">
           <p>{{artist.name}}</p>
           <hr>
         </div>
-    
+
       </div>
     </div>
 
