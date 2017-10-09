@@ -82,9 +82,8 @@ hr{
   height: 75px;
   }
 
-.udemy-img-md{
-width: 155px;
-height: 155px;
+.img-circle{
+border-radius: 100%;
 }
 
 .jumbotron

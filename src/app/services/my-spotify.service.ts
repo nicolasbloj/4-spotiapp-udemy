@@ -8,11 +8,15 @@ export class MySpotifyService {
 
   public artists: any[] = [];
 
-  public artist: any = {};
+  public artist: any = undefined;
 
-  public tracks: any[] = [];
+  public tracks: any[] = undefined;
 
-  token = 'BQAdD-mm_OOrzFxVz_lNcYCml8cSMeoRzAXvutr9o5TleqkekV746uVTEqbvslWrUgDrGJQqkSlMRzdd_NedJw';
+  // ESTAMOS ALMACENANDO TODO EN EL SERVICIO, POR ESO TENEMOS .subscribe() en componente.
+
+  URL_SPOTIFY = '';
+
+  token = 'BQAob4mY6Y53-_ZidyPBXzr-IsTra5F-e7DerzakE2b0RI8eSVgsSrUrsCwjGWi8TsV14CuV02K0WvrRUkNDng';
 
   URL_TOKEN = 'https://accounts.spotify.com/api/token';
 
@@ -43,6 +47,7 @@ export class MySpotifyService {
 
   // con return para setear artists en una variable en search.component.ts
   getArtists(searchTerm: string): Observable<any[]> {
+    console.log('ARTISTS');
 
     const headers = new Headers();
     headers.append('authorization', `Bearer ${this.token}`);
@@ -62,6 +67,7 @@ export class MySpotifyService {
   // luego accedemos a esta variable desde un ngfor en search.component.html
   getArtists2(searchTerm: string) {
 
+
     const headers = new Headers();
     headers.append('authorization', `Bearer ${this.token}`);
 
@@ -69,6 +75,7 @@ export class MySpotifyService {
     const URL = this.URL_SEARCH + QUERY;
 
     return this._http.get(URL, { headers }).map(res => {
+      console.log('ARTISTS');
       console.log(res.json());
       this.artists = res.json().artists.items;
     });
@@ -77,24 +84,46 @@ export class MySpotifyService {
 
   getArtistsById(id: string) {
 
+
     const headers = new Headers();
     headers.append('authorization', `Bearer ${this.token}`);
 
     const QUERY = `${id}`;
     const URL = this.URL_SEARCH_ARTISTS + QUERY;
 
-    console.log(URL);
+    // console.log(URL);
 
     return this._http.get(URL, { headers }).map(res => {
+      console.log('ARTIST by ID');
       console.log(res.json());
       this.artist = res.json();
+      // this.getSpotifyUrl().subscribe();
     });
 
   }
 
+  /*getSpotifyUrl() {
+    const headers = new Headers();
+    headers.append('authorization', `Bearer ${this.token}`);
 
-  GetanArtistTopTracks(id: string, market?: string) {
-    console.log('Tracks');
+    const URL = this.artist.href;
+
+    console.log('artist ' + this.artist);
+    console.log('artist.href ' + this.artist.href);
+
+    if (this.artist !== null) {
+      if (URL !== '') {
+        return this._http.get(URL, { headers }).map(res => {
+          console.log('SPOTIFY URL');
+          this.URL_SPOTIFY = res.json().external_urls.spotify;
+          console.log(this.URL_SPOTIFY);
+        });
+      }
+    }
+  }*/
+
+
+  GetAnArtistTopTracks(id: string, market?: string) {
 
     if (!market) {
       market = 'US';
@@ -106,9 +135,10 @@ export class MySpotifyService {
     const QUERY = `${id}/top-tracks?country=${market}`;
     const URL = this.URL_SEARCH_ARTISTS + QUERY;
 
-    console.log(URL);
+    // console.log(URL);
 
     return this._http.get(URL, { headers }).map(res => {
+      console.log('TOP TRACKS');
       console.log(res.json());
       this.tracks = res.json().tracks;
     });
